@@ -1,0 +1,16 @@
+{% extends 'myauth/base_generic.html' %}
+
+{% block content %}
+    <h2>Список продуктов</h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - {{ product.description }} - {{ product.price }}</li>
+        {% empty %}
+            <li>Продуктов нет</li>
+        {% endfor %}
+    </ul>
+
+    {% if perms.myauth.add_product %}
+        <a href="{% url 'product_create' %}">Добавить продукт</a>
+    {% endif %}
+{% endblock %}

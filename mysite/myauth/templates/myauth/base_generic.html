@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'product_list' %}">Главная</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Выйти</a></li>
+                    {% if perms.myauth.add_product %}
+                        <li><a href="{% url 'product_create' %}">Создать продукт</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}">Войти</a></li>
+                    <li><a href="{% url 'register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <h1>Добро пожаловать на сайт!</h1>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мой сайт</p>
+    </footer>
+</body>
+</html>

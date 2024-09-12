@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Ваш профиль</h2>
+    <p>Имя пользователя: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Местоположение: {{ user.profile.location }}</p>
+    {% if perms.myauth.can_create_product %}
+    <a href="{% url 'product_create' %}">Создать продукт</a>
+    {% endif %}
+</body>
+</html>
